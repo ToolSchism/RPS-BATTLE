@@ -12,6 +12,9 @@ var local_choice = null
 var opponent_choice = null
 var local_peer_id = 0
 
+var local_wins: int = 0
+var opponent_wins: int = 0
+
 @onready var result_label: Label = $Background/ResultLabel
 @onready var scissors_button: Button = $GridContainer/Scissors
 @onready var paper_button: Button = $GridContainer/Paper
@@ -95,28 +98,27 @@ func determine_winner():
 		(local_choice == Choice.SCISSORS and opponent_choice == Choice.PAPER)
 	):
 		result = "You Win!"
+		local_wins += 1
 		winner_name = Network.player_name
 	else:
 		result = "Opponent Wins!"
+		opponent_wins += 1
 		winner_name = Network.opponent_name
 	
 	print("Result determined: ", result, " Winner: ", winner_name)
-	
-	# Broadcast the result to all clients
-	rpc("show_result", result, winner_name)
+	rpc("show_result", result, winner_name, local_wins, opponent_wins)
 
-# Receive and display result
+
 @rpc("call_local", "authority", "reliable")
-func show_result(result, winner_name):
+func show_result(result, winner_name, local_score, opponent_score):
 	print("Showing result - Winner: ", winner_name, " Result: ", result)
 	result_label.text = "%s wins!" % [winner_name]
 	
-	# Reset for next round
+	$Rounds.text = "%s - %s" % [local_score, opponent_score]
+	
 	local_choice = null
 	opponent_choice = null
 	
-	# IF this were a larger project this would be an animation btw
-	# Re-enable buttons after a short delay
 	await get_tree().create_timer(2.0).timeout
 	result_label.text = "Reset!"
 	await get_tree().create_timer(0.75).timeout
@@ -128,7 +130,6 @@ func show_result(result, winner_name):
 func on_player_connected(id):
 	print("Player connected with ID: ", id)
 
-	# Reset the game state
 	result_label.text = ""
 	rock_button.disabled = false
 	paper_button.disabled = false
