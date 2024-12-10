@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgdajwvgebvv5"]
+
+[ext_resource type="StyleBox" uid="uid://brbnp5ypofkai" path="res://styles/genericButtonStyle.tres" id="1_i4q7g"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_l5gya"]
+[ext_resource type="Shader" path="res://shaders/havingFun.gdshader" id="2_yjrel"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbt11"]
+shader = ExtResource("2_yjrel")
+shader_parameter/block_color = Color(0.141176, 0.152941, 0.168627, 1)
+shader_parameter/block_width = 0.07
+shader_parameter/triangle_size_pixels = 33.258
+shader_parameter/wave_offset = 0.404
+
+[node name="Node" type="Node"]
+script = ExtResource("1_l5gya")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lbt11")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.925353, 0.925353, 0.925353, 1)
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -291.0
+offset_right = 291.0
+offset_bottom = 90.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave amp=45]RPS BATTLE DEMO[/wave]"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Background"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -221.5
+offset_top = 75.0
+offset_right = 221.5
+offset_bottom = 120.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=20][rainbow freq=0.1]aka... rairb tries networking![/rainbow][/wave]"
+fit_content = true
+
+[node name="Background2" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.290196, 0.321569, 0.352941, 1)
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -113.0
+offset_right = 261.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = ExtResource("1_i4q7g")
+theme_override_styles/disabled_mirrored = ExtResource("1_i4q7g")
+theme_override_styles/disabled = ExtResource("1_i4q7g")
+theme_override_styles/hover_pressed_mirrored = ExtResource("1_i4q7g")
+theme_override_styles/hover_pressed = ExtResource("1_i4q7g")
+theme_override_styles/hover_mirrored = ExtResource("1_i4q7g")
+theme_override_styles/hover = ExtResource("1_i4q7g")
+theme_override_styles/pressed_mirrored = ExtResource("1_i4q7g")
+theme_override_styles/pressed = ExtResource("1_i4q7g")
+theme_override_styles/normal_mirrored = ExtResource("1_i4q7g")
+theme_override_styles/normal = ExtResource("1_i4q7g")
+text = "PLAY DEMO"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

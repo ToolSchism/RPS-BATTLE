@@ -1,0 +1,10 @@
+res://scenes/connection_menu.tscn
+res://shaders/havingFun.gdshader
+res://styles/genericButtonStyle.tres
+res://scenes/main_menu.tscn
+res://scenes/game_scene.tscn
+res://scenes/global/trans.tscn
+res://scripts/game_scene.gd
+res://scripts/connection_menu.gd
+res://scenes/info.tscn
+res://scenes/nerd_stuff.gd

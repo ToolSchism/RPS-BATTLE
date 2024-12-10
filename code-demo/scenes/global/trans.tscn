@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn2bbclhjba88"]
+
+[ext_resource type="Shader" path="res://shaders/havingFun.gdshader" id="1_6xrtg"]
+[ext_resource type="Script" path="res://scenes/global/trans.gd" id="1_x22np"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exrip"]
+shader = ExtResource("1_6xrtg")
+shader_parameter/block_color = Color(0.141176, 0.152941, 0.168627, 1)
+shader_parameter/block_width = 0.07
+shader_parameter/triangle_size_pixels = 33.258
+shader_parameter/wave_offset = 0.404
+
+[sub_resource type="Animation" id="Animation_xnpi8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:material:shader_parameter/block_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.07]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_173rw"]
+resource_name = "trans"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:material:shader_parameter/block_width")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 3.605),
+"update": 0,
+"values": [0.07, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mx0b"]
+_data = {
+"RESET": SubResource("Animation_xnpi8"),
+"trans": SubResource("Animation_173rw")
+}
+
+[node name="Trans" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x22np")
+
+[node name="Background2" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 499
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.290196, 0.321569, 0.352941, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = 500
+material = SubResource("ShaderMaterial_exrip")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.290196, 0.321569, 0.352941, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4mx0b")
+}

@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://dast7u4yk32mt"]
+
+[ext_resource type="Shader" path="res://shaders/havingFun.gdshader" id="1_aib8s"]
+[ext_resource type="StyleBox" uid="uid://brbnp5ypofkai" path="res://styles/genericButtonStyle.tres" id="2_4c7e7"]
+[ext_resource type="Script" path="res://scenes/nerd_stuff.gd" id="3_rb5ri"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v86h"]
+shader = ExtResource("1_aib8s")
+shader_parameter/block_color = Color(0.141176, 0.152941, 0.168627, 1)
+shader_parameter/block_width = 0.07
+shader_parameter/triangle_size_pixels = 33.258
+shader_parameter/wave_offset = 0.404
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.290196, 0.321569, 0.352941, 1)
+
+[node name="Background2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0v86h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.925353, 0.925353, 0.925353, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -466.0
+offset_top = 18.0
+offset_right = 466.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Info! 1/5"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_right = 330.0
+offset_bottom = 250.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 1
+offset_left = -64.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 32
+text = "<-"
+
+[node name="Button2" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "->"
+
+[node name="NerdStuff" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 97.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_4c7e7")
+theme_override_styles/disabled_mirrored = ExtResource("2_4c7e7")
+theme_override_styles/disabled = ExtResource("2_4c7e7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_4c7e7")
+theme_override_styles/hover_pressed = ExtResource("2_4c7e7")
+theme_override_styles/hover_mirrored = ExtResource("2_4c7e7")
+theme_override_styles/hover = ExtResource("2_4c7e7")
+theme_override_styles/pressed_mirrored = ExtResource("2_4c7e7")
+theme_override_styles/pressed = ExtResource("2_4c7e7")
+theme_override_styles/normal_mirrored = ExtResource("2_4c7e7")
+theme_override_styles/normal = ExtResource("2_4c7e7")
+text = "Go Back"
+script = ExtResource("3_rb5ri")
+
+[connection signal="pressed" from="TextureRect/Button" to="NerdStuff" method="previous_message"]
+[connection signal="pressed" from="TextureRect/Button2" to="NerdStuff" method="next_message"]
+[connection signal="pressed" from="NerdStuff" to="NerdStuff" method="_on_pressed"]
