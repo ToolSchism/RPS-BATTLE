@@ -1,0 +1,17 @@
+res://GD-SyncTemplates/LobbyBrowser/lobby_browser.tscn
+res://addons/GD-Sync/UI/ConfigMenu/GD-Theme.tres
+res://GD-SyncTemplates/TextChat/text_chat.tscn
+res://GD-SyncTemplates/TextChat/text_chat.gd
+res://multiplayer.gd
+res://addons/GD-Sync/Scripts/ConnectionController.gd
+res://scenes/main_menu.tscn
+res://scripts/network.gd
+res://scripts/game_scene.gd
+res://scenes/game_scene.tscn
+res://styles/genericButtonStyle.tres
+res://scenes/connection_menu.tscn
+res://scripts/main_menu.gd
+res://scripts/connection_menu.gd
+res://shaders/havingFun.gdshader
+res://scenes/global/trans.tscn
+res://scenes/global/trans.gd
