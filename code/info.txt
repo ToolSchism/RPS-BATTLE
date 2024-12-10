@@ -1,0 +1,5 @@
+THE CODE IS HERE!
+
+The project for github pages is out of the code folder, and due to Godot's exporting is massive and NOT my code.
+
+The code I gave Godot to make this game and then be exported into that is in this folder.
